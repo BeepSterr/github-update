@@ -1,43 +1,82 @@
 # github-update
 Compares package.json version numbers and downloads new release if available.
 
-## Example Usage
-```    
-var updater = require('node-github-updater')(options);
+## Usage
+Using the **check** and **update** methods you can quickly create a simple update script.
+```js
+var updater = require('./')(options);
 
-// Check if we're up to date.
 updater.check( ( error, upToDate ) => {
-    if(error){ throw error; }
-
-    if(upToDate){
-		console.log('App is up to date');
-        StartApp();
-    }else{
-        // We're outdated, Lets update the app!
+     if(!upToDate){
         updater.update( (success, error) => {
-			if(!success){ throw error; };
-			
-			// WARNING: If the downloaded update includes the current file, You'll need to restart the process.
-			console.log('Updated App')
 			StartApp();
         })
     }
 })
-
-//Example function to start app.
-function StartApp(){
-    console.log("App Started");
-    process.exit(1);
-}
 ```
 
-## Options Object
+## updater.check
+```js    
+var updater = require('node-github-updater')(options);
 
-- `rawURL` The GitHub RAW url **(raw.githubusercontent.com)**
-- `baseURL` The GitHub Repo ZIP URL **(codeload.github.com)**
-- `repo` Username & Repo Name **(Nioxed/node-github-updater)**
-- `branch` Username & Repo Name **(master)**
-- `packageFile` Path to the remote package file **(package.json)**
-- `localPath` Directory Path to download the repo to **(./)**
-- `debug` Enable extra logging. **(false)**
+// Check if we're up to date.
+updater.check( ( error, upToDate ) => {
+    
+    //Throw error
+    if(error){ throw error; }
+    
+    if(upToDate){
+        // App is up to date.
+    }
+    
+})
+```
+## updater.update
+```js    
+var updater = require('node-github-updater')(options);
+
+// Download latest version of the repo and extract it.
+updater.update( (success, error) => {
+	if(!success){ throw error; };
+	StartApp();
+})
+```
+
+## Options
+When requiring the module you need to feed in an options object.
+```js
+var ExampleOptions = {
+    // 'github' or 'gitlab'
+    source      : "github", 
+    
+    // if using gitlab, set to 'gitlab.com'
+    rawURL      : "raw.githubusercontent.com",  
+    
+    // if using gitlab, set to 'gitlab.com'
+    baseURL     : "codeload.github.com",  
+    
+    // The repo we want to check. ( Username/RepoName )
+    repo        : "user/repo",
+    
+    // The branch we want to check. (Only works for github)
+    branch      : "master",
+    
+    // The remote path of the package.json file.
+    packageFile : "package.json",
+    
+    // The local directory we want to download the update to.
+    localPath   : "/repo",
+    
+    // Required for private gitlab repos
+    // https://gitlab.com/profile/personal_access_tokens
+    privateKey  : "",
+    
+    // Required for private gitlab repos
+    // You can get this from the repos settings page.
+    projectID   : "",
+    
+    // Spams console.log() with whatever we're doing.
+    debug       : false
+            
+}```
 
