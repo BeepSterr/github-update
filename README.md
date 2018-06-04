@@ -1,4 +1,4 @@
-# node-github-updater
+# github-update
 Compares package.json version numbers and downloads new release if available.
 
 ## Example Usage

@@ -1,6 +1,6 @@
     
     
-    var options = {
+var options = {
         rawURL      : "raw.githubusercontent.com",
         baseURL     : "codeload.github.com",
         repo        : "Nioxed/manager-lang",

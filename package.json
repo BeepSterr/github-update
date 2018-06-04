@@ -15,5 +15,14 @@
     "compare-versions": "^3.2.1",
     "fs-extra": "^6.0.1",
     "unzip": "^0.1.11"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nioxed/github-update.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nioxed/github-update/issues"
+  },
+  "homepage": "https://github.com/Nioxed/github-update#readme"
 }
