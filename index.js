@@ -94,12 +94,12 @@
                         file.pipe(unzip.Extract({ path: './github-updater-temp/repo' })).on('close', function () {
 
                                 var getFolder = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory()) //thx @pravdomil
-                                var Folders = getFolder(__dirname + '/github-updater-temp/repo' );
+                                var Folders = getFolder('./github-updater-temp/repo' );
 
                                 Folders.forEach( fold =>{
 														
-                                    if(options.debug){ console.log("Moving: [" + __dirname + '/github-updater-temp/repo/' + fold + '] TO: [' + options.localPath + ']') }
-                                    fs.copy(__dirname + '/github-updater-temp/repo/' + fold, options.localPath, function (err) {
+                                    if(options.debug){ console.log("Moving: [./github-updater-temp/repo/" + fold + '] TO: [' + options.localPath + ']') }
+                                    fs.copy('./github-updater-temp/repo/' + fold, options.localPath, function (err) {
                                         if (err) return console.error(err)
 
                                         fs.removeSync('./github-updater-temp');

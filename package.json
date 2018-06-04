@@ -1,7 +1,7 @@
 {
   "name": "github-update",
-  "version": "1.0.2",
-  "description": "A Simple package from fetching repo updates from github using package.json",
+  "version": "1.0.3",
+  "description": "A Simple package for fetching repo updates from github using package.json",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
