@@ -9,7 +9,7 @@ var updater = require('./')(options);
 updater.check( ( error, upToDate ) => {
      if(!upToDate){
         updater.update( (success, error) => {
-			StartApp();
+            StartApp();
         })
     }
 })
@@ -37,8 +37,8 @@ var updater = require('node-github-updater')(options);
 
 // Download latest version of the repo and extract it.
 updater.update( (success, error) => {
-	if(!success){ throw error; };
-	StartApp();
+    if(!success){ throw error; };
+    StartApp();
 })
 ```
 
