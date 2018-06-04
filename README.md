@@ -83,5 +83,6 @@ var ExampleOptions = {
     // Spams console.log() with whatever we're doing.
     debug       : false
             
-}```
+}
+```
 
