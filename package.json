@@ -1,0 +1,19 @@
+{
+  "name": "github-autoupdate",
+  "version": "1.0.0",
+  "description": "A Simple package from fetching new files from github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github"
+  ],
+  "author": "Nioxed <admin@nioxed.com> (https://nioxed.com)",
+  "license": "ISC",
+  "dependencies": {
+    "compare-versions": "^3.2.1",
+    "fs-extra": "^6.0.1",
+    "unzip": "^0.1.11"
+  }
+}
