@@ -4,7 +4,10 @@ Compares package.json version numbers and downloads new release if available.
 ## Usage
 Using the **check** and **update** methods you can quickly create a simple update script.
 ```js
-var updater = require('./')(options);
+var updater = require('github-update')({
+    repo: "Nioxed/github-update",
+    localPath: "./",
+});
 
 updater.check( ( error, upToDate ) => {
      if(!upToDate){
@@ -17,7 +20,7 @@ updater.check( ( error, upToDate ) => {
 
 ## updater.check
 ```js    
-var updater = require('node-github-updater')(options);
+var updater = require('github-update')(options);
 
 // Check if we're up to date.
 updater.check( ( error, upToDate ) => {
@@ -33,7 +36,7 @@ updater.check( ( error, upToDate ) => {
 ```
 ## updater.update
 ```js    
-var updater = require('node-github-updater')(options);
+var updater = require('github-update')(options);
 
 // Download latest version of the repo and extract it.
 updater.update( (success, error) => {
