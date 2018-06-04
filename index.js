@@ -21,10 +21,12 @@
             debug       : false
             
         }
-
-        if(!url.parse(userOptions.rawURL)){ throw "rawURL is not a URL!"; return undefined; }
-        if(!url.parse(userOptions.baseURL)){ throw "baseURL is not a URL!"; return undefined; }
-        this.options = Object.assign(this.defaults, userOptions);
+		
+		this.options = Object.assign(this.defaults, userOptions);
+		
+		if(this.options.debug){ console.log(this.options) };
+        if(!url.parse(this.options.rawURL)){ throw "rawURL is not a URL!"; return undefined; }
+        if(!url.parse(this.options.baseURL)){ throw "baseURL is not a URL!"; return undefined; }
 		
 			
 		if (!fs.existsSync(options.localPath)){

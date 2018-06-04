@@ -1,12 +1,10 @@
     
     
 var options = {
-        rawURL      : "raw.githubusercontent.com",
-        baseURL     : "codeload.github.com",
         repo        : "Nioxed/manager-lang",
         branch      : "V3",
         packageFile : "package.json",
-        localPath   : "./localRepo",
+        localPath   : "./lang",
         debug       : true
         
     }
