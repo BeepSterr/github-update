@@ -44,6 +44,7 @@ updater.update( (success, error) => {
 
 ## Options
 When requiring the module you need to feed in an options object.
+Below is the default config object, The object you supply will override these values. (All values are optional, Their default value will be used if you don't supply it.)
 ```js
 var ExampleOptions = {
     // 'github' or 'gitlab'
