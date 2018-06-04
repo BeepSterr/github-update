@@ -11,7 +11,7 @@
 
     module.exports = function( userOptions ) {
         
-        this.options = {
+        this.defaults = {
             rawURL      : "raw.githubusercontent.com",
             baseURL     : "codeload.github.com",
             repo        : "user/repo",
@@ -24,7 +24,7 @@
 
         if(!url.parse(userOptions.rawURL)){ throw "rawURL is not a URL!"; return undefined; }
         if(!url.parse(userOptions.baseURL)){ throw "baseURL is not a URL!"; return undefined; }
-        this.options = userOptions
+        this.options = Object.assign(this.defaults, userOptions);
 		
 			
 		if (!fs.existsSync(options.localPath)){
