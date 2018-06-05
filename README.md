@@ -76,8 +76,8 @@ var ExampleOptions = {
     // https://gitlab.com/profile/personal_access_tokens
     privateKey  : "",
     
-    // Required for private gitlab repos
-    // You can get this from the repos settings page.
+    // Required for gitlab repos
+    // (Find it on the repos settings page.)
     projectID   : "",
     
     // Spams console.log() with whatever we're doing.
