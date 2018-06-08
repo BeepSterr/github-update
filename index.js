@@ -36,7 +36,7 @@
             },
             gitlab: {
                 rawfile: "https://" + options.rawURL + "/" + options.repo + "/raw/" + options.branch + "/" + options.packageFile,
-                download: "https://" + options.rawURL + "/api/v3/projects/" + options.projectID + "/repository/archive.zip"
+                download: "https://" + options.rawURL + "/api/v4/projects/" + options.projectID + "/repository/archive.zip"
             }
         }
 
