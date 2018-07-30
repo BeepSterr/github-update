@@ -58,15 +58,16 @@
             if(options.debug){ console.log("Creating " + options.localPath) }
 			fs.mkdirSync(options.localPath);
 		}
-
-        try{ 
-            this.package = JSON.parse( fs.readFileSync(options.localPath + '/' + options.packageFile) ); 
-        }catch(ex){ 
-            this.package = { version: "0.0.0" }
-        }
     
         this.check = function ( callback ){
 
+
+			try{ 
+				this.package = JSON.parse( fs.readFileSync(options.localPath + '/' + options.packageFile) ); 
+			}catch(ex){ 
+				this.package = { version: "0.0.0" }
+			}
+    
             if(options.debug){ console.log("Starting update check.") }
             if(options.debug){ console.log("GET: " + source.rawfile) }
             https.get( source.rawfile , (resp) => {
