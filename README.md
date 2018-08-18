@@ -79,6 +79,14 @@ var ExampleOptions = {
     // Required for gitlab repos
     // (Find it on the repos settings page.)
     projectID   : "",
+
+    // Will run 'npm install' or 'yarn install' if filled in, if left empty none will be ran.
+    // one of the following: 'npm', 'yarn' or ''
+    packages    : "", 
+
+    // Runs the npm script in package.json with this name.
+    // leave at "" to not run any npm script.
+    runScript   : "",
     
     // Spams console.log() with whatever we're doing.
     debug       : false

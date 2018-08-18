@@ -1,3 +1,5 @@
+    
+    var exec        = require('child_process').execSync;
     var fs          = require('fs-extra')
     var util        = require('util');
     var path        = require('path');
@@ -21,6 +23,8 @@
             localPath   : "/repo",
             privateKey  : "",
             projectID   : "",
+            packages    : "", // one of the following: 'npm', 'yarn' or ''
+            runScript   : "", // a npm script to run after updates are complete (& After installPackages)
             debug       : false
             
         }
@@ -122,26 +126,74 @@
                 file.on('finish', function() {
                     file.close( ()=> {
 
+                        // Unzip the file.
                         if(options.debug){ console.log("Unzipping Files") }
-
                         var file = fs.createReadStream("./github-updater-temp/repo.zip");
                         file.pipe(unzip.Extract({ path: './github-updater-temp/repo' })).on('close', function () {
 
+                                // Get folders
                                 var getFolder = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory()) //thx @pravdomil
                                 var Folders = getFolder('./github-updater-temp/repo' );
 
                                 Folders.forEach( fold =>{
 
-                                    if(options.debug){ console.log("Moving Files") }
-														
+                                    // Move from temporary to new location.
                                     if(options.debug){ console.log("Moving: [./github-updater-temp/repo/" + fold + '] TO: [' + options.localPath + ']') }
                                     fs.copy('./github-updater-temp/repo/' + fold, options.localPath, function (err) {
-                                        if (err) return console.error(err)
+                                        if (err) { return console.error(err) }
 
+                                        // Delete temporary folder
                                         if(options.debug){ console.log("Deleting github-updater-temp") }
                                         fs.removeSync('./github-updater-temp');
-                                        
+
+                                        //Time to install stuff if needed.
+                                        if(String(options.packages).toLowerCase() == 'npm'){
+
+                                            if(options.debug){ console.log("Running 'npm install' in '" + options.localPath + "'") }
+                                            
+                                            exec('npm install', { cwd: options.localPath + '/' }, function(error, stdout, stderr) {
+                                                
+                                                if(error){ callback(false, error); return; }
+                                                
+                                                if(options.debug){ console.log(stdout); }
+                                                if(options.debug){ console.log(stderr); }
+
+                                            });
+
+                                        }else if(String(options.packages).toLowerCase() == 'yarn'){
+
+                                            if(options.debug){ console.log("Running 'yarn install' in '" + options.localPath + "'") }
+
+                                            exec('yarn install', { cwd: options.localPath + '/' }, function(error, stdout, stderr) {
+
+                                                if(error){ callback(false, error); return; }
+                                                
+                                                if(options.debug){ console.log(stdout); }
+                                                if(options.debug){ console.log(stderr); }
+                                                
+                                                
+                                            });
+                                        }
+
+
+                                        if(options.runScript != ""){
+
+                                            if(options.debug){ console.log("Running NPM Scripts") }
+
+                                            exec('npm run ' + options.runScript, { cwd: options.localPath + '/' }, function(error, stdout, stderr) {
+
+                                                if(error){ callback(false, error); return; }
+                                                
+                                                if(options.debug){ console.log(stdout); }
+                                                if(options.debug){ console.log(stderr); }
+                                                
+                                                
+                                            });
+                                        }
+
                                         callback(true, null);
+                                        
+                                        
 
                                     });
 

@@ -1,10 +1,11 @@
 {
   "name": "github-update",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "A Simple package for fetching repo updates from github using package.json",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "exampleScript": "echo 'Hello World'"
   },
   "keywords": [
     "github"
